@@ -70,4 +70,15 @@ app.delete('/users/:id',async (req: Request, res: Response) => {
   }
 });
 
+
+app.get('/users/:id', async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const user = await prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+  return res.json(user);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
