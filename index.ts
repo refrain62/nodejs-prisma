@@ -85,4 +85,10 @@ app.get('/users/:id', async (req: Request, res: Response) => {
   }
 });
 
+
+app.get('/usersfirst', async (req: Request, res: Response) => {
+  const users = await prisma.user.findFirst();
+  return res.json(users);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

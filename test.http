@@ -24,3 +24,6 @@ GET http://localhost:3000/users/1
 
 ###
 GET http://localhost:3000/users/0
+
+###
+GET http://localhost:3000/usersfirst
