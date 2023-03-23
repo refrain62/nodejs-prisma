@@ -5,3 +5,12 @@ Content-Type: application/json
     "name": "John",
     "email": "john@example.com" 
 }
+
+
+###
+PUT http://localhost:3000/users/2
+Content-Type: application/json
+
+{
+  "name": "Kevin"
+}

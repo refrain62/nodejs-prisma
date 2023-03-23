@@ -35,4 +35,22 @@ app.post('/users', async (req: Request, res: Response) => {
   }
 });
 
+app.put('/users/:id', async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const { name } = req.body;
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+      },
+    });
+    return res.json(user);
+  } catch (e) {
+    return res.status(400).json(e);
+  }
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
