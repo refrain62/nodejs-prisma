@@ -6,7 +6,7 @@ const port = 3000;
 
 app.use(express.json());
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ rejectOnNotFound: true });
 
 app.get('/', (req: Request, res: Response) => res.send('Hello World!'));
 
@@ -73,12 +73,16 @@ app.delete('/users/:id',async (req: Request, res: Response) => {
 
 app.get('/users/:id', async (req: Request, res: Response) => {
   const id = Number(req.params.id);
-  const user = await prisma.user.findUnique({
-    where: {
-      id,
-    },
-  });
-  return res.json(user);
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+    return res.json(user);
+  } catch (e) {
+    return res.status(400).json(e);
+  }
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
