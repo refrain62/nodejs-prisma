@@ -91,4 +91,30 @@ app.get('/usersfirst', async (req: Request, res: Response) => {
   return res.json(users);
 });
 
+app.get('/users_upsert', async (req: Request, res: Response) => {
+  const user = await prisma.user.upsert({
+    where: { id: 4 },
+    create: {
+      email: 'alice4@prisma.io',
+      name: 'Alice4',
+    },
+    update: {
+      email: 'alice4@prisma.io',
+      name: 'Alice4B',
+    },
+  })
+  return res.json(users);
+});
+
+// // createMany は SQLiteではサポートされない
+// app.get('/users_add_many', async (req: Request, res: Response) => {
+//   const users = await prisma.user.createMany({
+//     data: [
+//       { name: 'Sonali', email: 'sonali@prisma.io' },
+//       { name: 'Alex', email: 'alex@prisma.io' },
+//     ],
+//   });
+//   return res.json(users);
+// });
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

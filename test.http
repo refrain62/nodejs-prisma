@@ -27,3 +27,6 @@ GET http://localhost:3000/users/0
 
 ###
 GET http://localhost:3000/usersfirst
+
+###
+GET http://localhost:3000/users_upsert
