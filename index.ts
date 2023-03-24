@@ -103,7 +103,7 @@ app.get('/users_upsert', async (req: Request, res: Response) => {
       name: 'Alice4B',
     },
   })
-  return res.json(users);
+  return res.json(user);
 });
 
 // // createMany は SQLiteではサポートされない
@@ -116,5 +116,22 @@ app.get('/users_upsert', async (req: Request, res: Response) => {
 //   });
 //   return res.json(users);
 // });
+
+
+app.post('/posts', async (req: Request, res: Response) => {
+  const { title, content, authorId } = req.body;
+  try {
+    const post = await prisma.post.create({
+      data: {
+        title,
+        content,
+        authorId,
+      },
+    });
+    return res.json(post);
+  } catch (e) {
+    return res.status(400).json(e);
+  }
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

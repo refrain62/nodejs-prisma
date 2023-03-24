@@ -30,3 +30,13 @@ GET http://localhost:3000/usersfirst
 
 ###
 GET http://localhost:3000/users_upsert
+
+### 
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Prismaの基本",
+  "content": "リレーションショッピンの設定を確認中",
+  "authorId": 1
+}
