@@ -40,3 +40,6 @@ Content-Type: application/json
   "content": "リレーションショッピンの設定を確認中",
   "authorId": 1
 }
+
+### 
+GET http://localhost:3000/users
